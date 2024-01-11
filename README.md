@@ -15,3 +15,9 @@ This repo serves as a tutorial for running gazebo simulations with ROS2. At the 
 # World Model
 - xml documents (.world files) that specifies the world layout and populates it with other objects.
 
+
+
+**References:**
+
+1) Neobotix website - https://neobotix-docs.de/ros/platform/index.html
+2) Neobotix github page - https://github.com/neobotix
