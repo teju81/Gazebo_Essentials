@@ -45,7 +45,7 @@ URDF Tags
 - gazebo
   - plugins
     - name - Any name of your choice
-    - filename - eg. libgazebo_ros_diff_drive.so or libgazebo_ros_joint_state_publisher.so
+    - filename (libgazebo_ros_diff_drive.so, libgazebo_ros_joint_state_publisher.so, libgazebo_ros_camera.so, libgazebo_ros_imu_sensor.so, libgazebo_ros_ray_sensor.so)
     - 
 
 - ros2_control
@@ -98,6 +98,7 @@ A typival Xacro file will be defined as below, where xacro properties are define
   - URDF values are in metres
   - Reference [3] is a very nicely written reference to understand URDF and xacro files for describing your robot.
   - Volta Description package in botsync github page is a good reference design
+  - Material in visual for sphere/cylinder/box will only show in RVIZ but not in Gazebo. Need to set this explicitly for gazebo. Not needed if visual is a mesh.
 
 
 
