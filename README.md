@@ -42,7 +42,14 @@ Robot models are defined by urdf files or xacro files. Xacro files are (xml macr
   - Gazebo : Lets us specify certain parameters that are used in the Gazebo simulation environment
   - Transmission : Provides more detail about how the joints are driven by physical actuators
 
+A typicval Xacro file will be defined as below
 
+```
+<?xml version="1.0"?>
+<robot name="volta_robot" xmlns:xacro="https://ros.org/wiki/xacro">
+...
+</robot>
+```
 
 
 **Note**
