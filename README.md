@@ -21,3 +21,5 @@ This repo serves as a tutorial for running gazebo simulations with ROS2. At the 
 
 1) Neobotix website - https://neobotix-docs.de/ros/platform/index.html
 2) Neobotix github page - https://github.com/neobotix
+3) Articulated Robotics URDF/Xacro Tutorial: https://articulatedrobotics.xyz/ready-for-ros-7-urdf/
+4) 
