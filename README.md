@@ -97,6 +97,7 @@ A typival Xacro file will be defined as below, where xacro properties are define
 **Note**
   - URDF values are in metres
   - Reference [3] is a very nicely written reference to understand URDF and xacro files for describing your robot.
+  - Volta Description package in botsync github page is a good reference design
 
 
 
