@@ -42,8 +42,14 @@ URDF Tags
     - effort - N or N.m
 - material : Allows us to give a “name” to a colour once, and then reuse that name in as many links as we like
 - transmission : Provides more detail about how the joints are driven by physical actuators
-- gazebo : Lets us specify certain parameters that are used in the Gazebo simulation environment
+- gazebo
+  - plugins
+    - name - Any name of your choice
+    - filename - eg. libgazebo_ros_diff_drive.so or libgazebo_ros_joint_state_publisher.so
+    - 
+
 - ros2_control
+  - diff
 
 Xacro Tags
 - Xacro:Args: Referenced by using ${arg <arg_name>}
