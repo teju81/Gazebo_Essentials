@@ -11,45 +11,81 @@ This repo serves as a tutorial for running gazebo simulations with ROS2. At the 
 
 Robot models are defined by urdf files or xacro files. Xacro files are (xml macros) used for more efficiently or succinctly describing your robot by making macro blocks out of informaiton that is repeated in several places of the urdf file. The xacro file is then parsed internally by Gazebo to generate the urdf file. URDF files can also be broken down into several hierarchical xacro files each describing different parts of the robot. A main xacro file then references these individual xacro files.
 
-- Xacro/URDF Tags
-  - Links
-    - Visual
-      - Geometry
-      - Origin
-      - Material
-    - Collision
-      - Geometry
-      - Origin
-    - Inertial
-      - Mass
-      - Origin
-      - Inertia Matrix 3x3
-  - Joints
-    - Origin
-    - Name
-    - Parent and Child Links
-    - Types   
-      - Continuous
-      - Revolute
-      - Prismatic: Sliding or Linear
-      - Fixed
-    - Axis
-    - Limits
-      - Upper and Lower position limits rad/meters
-      - Velocity m/s or rad/s
-      - Effort N or N.m
-  - Material : Allows us to give a “name” to a colour once, and then reuse that name in as many links as we like
-  - Gazebo : Lets us specify certain parameters that are used in the Gazebo simulation environment
-  - Transmission : Provides more detail about how the joints are driven by physical actuators
+URDF Tags
+- Links
+  - visual
+    - geometry
+    - origin
+    - material
+  - collision
+    - geometry
+    - origin
+  - inertial
+    - mass
+    - origin
+    - inertia Matrix 3x3
+- joints
+  - origin
+  - name
+  - parent
+  - child
+  - types   
+    - continuous
+    - revolute
+    - prismatic: Sliding or Linear
+    - fixed
+  - axis
+  - limits
+    - upper - position limits rad/meters
+    - lower - position limits rad/meters
+    - velocity -  m/s or rad/s
+    - effort - N or N.m
+- material : Allows us to give a “name” to a colour once, and then reuse that name in as many links as we like
+- transmission : Provides more detail about how the joints are driven by physical actuators
+- gazebo : Lets us specify certain parameters that are used in the Gazebo simulation environment
+- ros2_control
 
-A typicval Xacro file will be defined as below
+Xacro Tags
+- Xacro:Args: Referenced by using ${arg <arg_name>}
+  - name
+  - default
+- Xacro:Properties
+  - name
+  - value
+- Xacro:include
+  - filename
+- Xacro:Macro
+  - name
+  - parameters - referenced within the macro definition using ${<parameter_name>}
+- Xacro:if - xacro statements in between these tags get included when value is true (can be set using parameters or args)
+  - value: boolean value
+
+A typival Xacro file will be defined as below, where xacro properties are defined in one file and reused in 
 
 ```
 <?xml version="1.0"?>
 <robot name="volta_robot" xmlns:xacro="https://ros.org/wiki/xacro">
-...
+    <!-- xacro includes -->
+    <xacro:include filename="$(find volta_description)/urdf/my_robot_properties.xacro"/>
+    <xacro:include filename="$(find volta_description)/urdf/components/my_robot_1.urdf.xacro"/>
+    <xacro:include filename="$(find volta_description)/urdf/components/my_robot_2.urdf.xacro"/>
+
+   <!-- xacro args -->
+
+   <!-- xacro macro defining: typically defined in one of the include files -->
+   <xacro:macro name="my_robot_1_macro1" params="par1 *par2">
+    ....
+   </xacro:macro>
+
+   <!-- xacro macro referencing-->
+   <xacro:my_robot_1_macro1 par1="par1">
+   ....
+   </xacro:my_robot_1_macro>
+
+
 </robot>
 ```
+
 
 
 **Note**
