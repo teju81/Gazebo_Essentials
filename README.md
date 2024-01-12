@@ -14,7 +14,7 @@ Robot models are defined by urdf files or xacro files. Xacro files are (xml macr
 URDF Tags
 - Links
   - visual
-    - geometry
+    - geometry - box/cylinder/sphere or a mesh (collada file)
     - origin
     - material
   - collision
