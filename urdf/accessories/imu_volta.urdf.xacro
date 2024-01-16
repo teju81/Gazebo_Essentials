@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<!--
+
+Copyright (c) 2021, Botsync Pte. Ltd.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+    * Redistributions of source code must retain the above copyright
+      notice, this list of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above copyright
+      notice, this list of conditions and the following disclaimer in the
+      documentation and/or other materials provided with the distribution.
+    * Neither the name of the Botsync Pte. Ltd. nor the
+      names of its contributors may be used to endorse or promote products
+      derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY
+DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+-->
+
+<robot name="volta_robot" xmlns:xacro="https://ros.org/wiki/xacro">
+    <xacro:macro name="imu" params="frame:=imu topic:=imu update_rate:=50 robot_namespace:=/ tf_pre:=/">
+        <joint name="${frame}_joint" type="fixed">
+            <parent link="base_link" />
+            <child link="${frame}" />
+            <origin xyz="0 0 ${base_h/2}" rpy="0 0 0" />
+        </joint>
+
+        <link name="${frame}">
+            <!-- Visual and Collision missing -->
+            <inertial>
+                <mass value="0.001"/>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <inertia ixx="1e-09" ixy="0.0" ixz="0.0" iyy="1e-09" iyz="0.0" izz="1e-09"/>
+            </inertial>
+        </link>
+
+        <gazebo reference="${frame}">
+          <sensor name="imu_sensor" type="imu">
+            <always_on>true</always_on>
+            <update_rate>${update_rate}</update_rate>
+            <plugin name="gazebo_ros_imu" filename="libgazebo_ros_imu_sensor.so">
+              <ros>
+                <remapping>~/out:=${topic}</remapping>
+              </ros>
+              <namespace>${robot_namespace}</namespace>
+              <body_name>${frame}</body_name>
+              <frame_id>${tf_pre}${frame}</frame_id>
+              <frame_name>${tf_pre}${frame}</frame_name>
+              <topic_name>${topic}</topic_name>
+              <xyzOffset>0.0 0.0 0.0</xyzOffset>
+              <rpyOffset>0.0 0.0 0.0</rpyOffset>
+              <heading_drift>0.0005</heading_drift>
+              <gaussian_noise>0.0005</gaussian_noise>
+              <always_on>true</always_on>
+            </plugin>
+          </sensor>
+        </gazebo>
+    </xacro:macro>
+</robot>
