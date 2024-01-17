@@ -149,10 +149,32 @@ Open Rviz and click on ``Add`` under the Display window on the left, and add a m
 Change the Rviz view of the map to top-down-ortho by clicking on the righthand side scrollbar which will open up the Views menu. Under ``Type`` choose the ``TopDownOrtho`` from the dropdown list. In the previous view ``orbit`` you can rotate the map in 3D which you will no longer be able to do (only 2D allowed).
 
 **Save Map in RViz**
-In RViz click on ``Panel``--->``Add New Panel`` (in the menubar) and select the ``SlamToolBoxPlugin``. The plugin should appear on the bottom left under ``Displays`` window, where you can enter the map name in ``Save Map``  and `` Serialiaze Map`` textboxes. The save map feature is meant for external plugins such as Nav2 to use (will create a .pgm file and corresponding .yaml file). These files represent the map in the old format. The pgm file shows the occupancy grid and the yaml file stores the meta data. The serialize map feature is for slamtoolbox to use (will create a .data file and a .posegraph file).
+In RViz click on ``Panel``--->``Add New Panel`` (in the menubar) and select the ``SlamToolBoxPlugin``. The plugin should appear on the bottom left under ``Displays`` window, where you can enter the map name in ``Save Map``  and `` Serialiaze Map`` textboxes. The save map feature is meant for external plugins such as Nav2 to use (will create a .pgm file and corresponding .yaml file). These files represent the map in the old format. The pgm file shows the occupancy grid and the yaml file stores the meta data (such as origin and resolutino etc.). The serialize map feature is for slamtoolbox to use (will create a .data file and a .posegraph file).
+
+# Autonomous Navigation in Gazebo Environment
+
+We will use the AMCL package to do this. 
+
+**Install the AMCL package**
+Run ``sudo apt install ros-iron-nav2 ros-iron-nav2-bringup`` to install the required packages.
+
+**Run Map Server**
+Run the command ``ros2 run nav2_map_server map_server --ros-args -p yaml_file_name:=<your_map_yaml_file_path> -p use_sim_time:=true``
+
+The map server takes the saved map file and publishes it on the /map topic.
+
+We need to activate the map_server node by running the command ``ros2 run nav2_util lifecycle_bringup map_server``
+
+Open RViz and change the map ``Durability Policy`` for the map to ``Transient Local``.
+
+**Run AMCL**
+
+In the abscence of a localization algorithm the robot will appear as a white blob on RViz. We need to run a localization algorithm like AMCL. Run the command ``ros2 run nav2_amcl amcl --ros-args -p use_sim_time:=true``
+
+We need to activate the amcl node by running the command ``ros2 run nav2_util lifecycle_bringup amcl``. Once activated the AMCL needs an initial estimate of the pose of the robot to get started. The amcl node subscribes to the /initialpose topic and waits to receive an initial pose estimate on this topic. The initial pose estimate can also be set by using RViz. Click on ``2D Pose Estimate`` and click on the map and drag the arrow in the direction in which you estimate the robot to be facing.
 
 
-
+**Note:** To avoid running the nodes individually on seperate terminals, we can use the launch file for amcl.
 
 **References:**
 
