@@ -146,7 +146,7 @@ ros2 launch slam_toolbox online_async_launch.py slam_params_file:=./config/mappe
 Open Rviz and click on ``Add`` under the Display window on the left, and add a map. Then change the ``Fixed Frame`` (in the display window on the left under ``Global Options``) from ``odom`` to ``map`` (by using the dropdown menu). This will avoid the map from shifting while you move the robot around the environment. Now using the teleop node drive around the robot in the environment and you should see the map being built. 
 
 **Change RViz View**
-Change the Rviz view of the map to top-down-ortho by clicking on the righthand side scrollbar which will open up the Views menu. Under ``Type`` choose the ``TopDownOrtho`` from the dropdown list.
+Change the Rviz view of the map to top-down-ortho by clicking on the righthand side scrollbar which will open up the Views menu. Under ``Type`` choose the ``TopDownOrtho`` from the dropdown list. In the previous view ``orbit`` you can rotate the map in 3D which you will no longer be able to do (only 2D allowed).
 
 
 **References:**
