@@ -133,4 +133,5 @@ You should be able to see a Gazebo environment in which the volta is spawned and
 1) Neobotix website - https://neobotix-docs.de/ros/platform/index.html
 2) Neobotix github page - https://github.com/neobotix
 3) Articulated Robotics URDF/Xacro Tutorial: https://articulatedrobotics.xyz/ready-for-ros-7-urdf/
-4) 
+4) SLAM Toolbox: https://www.youtube.com/watch?v=ZaiA3hWaRzE&t=520s&ab_channel=ArticulatedRobotics
+5) Nav2 Package: https://www.youtube.com/watch?v=jkoGkAd0GYk&t=573s&ab_channel=ArticulatedRobotics
