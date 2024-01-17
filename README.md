@@ -139,7 +139,12 @@ In a new terminal launch the slamtoolbox with config file ``mapper_params_online
 ros2 launch slam_toolbox online_async_launch.py slam_params_file:=./config/mapper_params_online_async.yaml use_sim_time:=true
 ```
 
-Open Rviz and click on ``Add`` under the Display window on the left, and add a map. Then change the ``Fixed Frame`` (in the display window on the left under ``Global Options``) from ``odom`` to ``map`` (by using the dropdown menu). This will avoid the map from shifting while you move the robot around the environment. Now using the teleop node drive around the robot in the environment and you should see the map being built.
+**Add a Map to RViz**
+Open Rviz and click on ``Add`` under the Display window on the left, and add a map. Then change the ``Fixed Frame`` (in the display window on the left under ``Global Options``) from ``odom`` to ``map`` (by using the dropdown menu). This will avoid the map from shifting while you move the robot around the environment. Now using the teleop node drive around the robot in the environment and you should see the map being built. 
+
+**Change RViz View**
+Change the Rviz view of the map to top-down-ortho by clicking on the righthand side scrollbar which will open up the Views menu. Under ``Type`` choose the ``TopDownOrtho`` from the dropdown list.
+
 
 
 **References:**
