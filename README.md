@@ -121,11 +121,25 @@ Then copy all the necessary files from this repo into the ``src`` folder, and fr
 
 ```
 colcon build
-
 ros2 launch volta_description gazebo_launch.py
 ```
 
 You should be able to see a Gazebo environment in which the volta is spawned and can be teleoperated using the teleop keyboard node (you need to be on this window for the keyboard commands to be interpreted). Note that the gazebo environment can take a while to spin up the first time (you might have to wait for some time).
+
+
+In a new terminal launch rviz with config file ``urdf.rviz`` by running the command:
+
+```
+rviz2 -d src/volta_description/rviz_params/urdf.rviz
+```
+
+In a new terminal launch the slamtoolbox with config file ``mapper_params_online_async.yaml`` by running the command:
+
+```
+ros2 launch slam_toolbox online_async_launch.py slam_params_file:=./config/mapper_params_online_async.yaml use_sim_time:=true
+```
+
+Open Rviz and click on ``Add`` under the Display window on the left, and add a map. Then change the ``Fixed Frame`` (in the display window on the left) from ``odom`` to ``map`` (by using the dropdown menu). This will avoid the map from shifting while you move the robot around the environment. Now using the teleop node drive around the robot in the environment and you should see the map being built.
 
 
 **References:**
