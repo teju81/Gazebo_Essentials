@@ -149,7 +149,7 @@ Open Rviz and click on ``Add`` under the Display window on the left, and add a m
 Change the Rviz view of the map to top-down-ortho by clicking on the righthand side scrollbar which will open up the Views menu. Under ``Type`` choose the ``TopDownOrtho`` from the dropdown list. In the previous view ``orbit`` you can rotate the map in 3D which you will no longer be able to do (only 2D allowed).
 
 **Save Map in RViz**
-In RViz click on ``Panel``--->``Add New Panel`` (in the menubar) and select the ``SlamToolBoxPlugin``. The plugin should appear on the bottom left under ``Displays`` window, where you can enter the map name in ``Save Map``  and `` Serialiaze Map`` textboxes. The save map feature is meant for external plugins such as Nav2 to use (will create a .pgm file and corresponding .yaml file), while the serialize map feature is for slamtoolbox to use (will create a .data file and a .posegraph file).
+In RViz click on ``Panel``--->``Add New Panel`` (in the menubar) and select the ``SlamToolBoxPlugin``. The plugin should appear on the bottom left under ``Displays`` window, where you can enter the map name in ``Save Map``  and `` Serialiaze Map`` textboxes. The save map feature is meant for external plugins such as Nav2 to use (will create a .pgm file and corresponding .yaml file). These files represent the map in the old format. The pgm file shows the occupancy grid and the yaml file stores the meta data. The serialize map feature is for slamtoolbox to use (will create a .data file and a .posegraph file).
 
 
 
