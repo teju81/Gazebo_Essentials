@@ -143,10 +143,16 @@ ros2 launch slam_toolbox online_async_launch.py slam_params_file:=./config/mappe
 ```
 
 **Add a Map to RViz**
-Open Rviz and click on ``Add`` under the Display window on the left, and add a map. Then change the ``Fixed Frame`` (in the display window on the left under ``Global Options``) from ``odom`` to ``map`` (by using the dropdown menu). This will avoid the map from shifting while you move the robot around the environment. Now using the teleop node drive around the robot in the environment and you should see the map being built. 
+Open Rviz and click on ``Add`` under the Display window on the left, and add a map. Then change the ``Fixed Frame`` (in the display window on the left under ``Global Options``) from ``odom`` to ``map`` (by using the dropdown menu). This will avoid the map from shifting while you move the robot around the environment. Now using the teleop node drive around the robot in the environment and you should see the map being built.
 
 **Change RViz View**
 Change the Rviz view of the map to top-down-ortho by clicking on the righthand side scrollbar which will open up the Views menu. Under ``Type`` choose the ``TopDownOrtho`` from the dropdown list. In the previous view ``orbit`` you can rotate the map in 3D which you will no longer be able to do (only 2D allowed).
+
+**Save Map in RViz**
+In RViz click on ``Panel``--->``Add New Panel`` (in the menubar) and select the ``SlamToolBoxPlugin``. The plugin should appear on the bottom left under ``Displays`` window, where you can enter the map name in ``Save Map``  and `` Serialiaze Map`` textboxes. The save map feature is meant for external plugins such as Nav2 to use (will create a .data file), while the serialize map feature is for slamtoolbox to use (will create a .posegraph file).
+
+
+
 
 
 **References:**
