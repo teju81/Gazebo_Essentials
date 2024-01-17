@@ -1,7 +1,7 @@
 # Gazebo_Essentials
 
 
-This repo serves as a tutorial for running gazebo simulations with ROS2. At the time of writing this tutorial, I was using ROS2 Iron and Gazebo 11.
+This repo serves as a tutorial for running gazebo simulations with ROS2. At the time of writing this tutorial, I was using ROS2 Iron and Gazebo 11 (Classic).
 
 
 
