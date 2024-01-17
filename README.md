@@ -108,11 +108,24 @@ A typival Xacro file will be defined as below, where xacro properties are define
 
 # Teleoperating the Volta in Gazebo Environment
 
-Run the following command
+Create a ros2 workspace for the simulation by running the following commands
 
 ```
+mkdir volta_sim_ws
+cd volta_sim_ws
+mkdir src
+```
+
+Then copy all the necessary files from this repo into the ``src`` folder, and from the root directory of the workspace ``volta_sim_ws`` run the following commands:
+
+
+```
+colcon build
+
 ros2 launch volta_description gazebo_launch.py
 ```
+
+You should be able to see a Gazebo environment in which the volta is spawned and can be teleoperated using the teleop keyboard node (you need to be on this window for the keyboard commands to be interpreted). Note that the gazebo environment can take a while to spin up the first time (you might have to wait for some time).
 
 
 **References:**
