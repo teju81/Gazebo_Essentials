@@ -106,6 +106,14 @@ A typival Xacro file will be defined as below, where xacro properties are define
 - xml documents (.world files) that specifies the world layout and populates it with other objects.
 
 
+# Teleoperating the Volta in Gazebo Environment
+
+Run the following command
+
+```
+ros2 launch volta_description gazebo_launch.py
+```
+
 
 **References:**
 
