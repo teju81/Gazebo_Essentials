@@ -108,6 +108,7 @@ A typival Xacro file will be defined as below, where xacro properties are define
 
 # Teleoperating the Volta in Gazebo Environment
 
+**Create Workspace and Launch Gazebo**
 Create a ros2 workspace for the simulation by running the following commands
 
 ```
@@ -127,12 +128,14 @@ ros2 launch volta_description gazebo_launch.py
 You should be able to see a Gazebo environment in which the volta is spawned and can be teleoperated using the teleop keyboard node (you need to be on this window for the keyboard commands to be interpreted). Note that the gazebo environment can take a while to spin up the first time (you might have to wait for some time).
 
 
+**Launch RViz with Config File**
 In a new terminal launch rviz with config file ``urdf.rviz`` by running the command:
 
 ```
 rviz2 -d src/volta_description/rviz_params/urdf.rviz
 ```
 
+**Launch Slamtoolbox with Config File**
 In a new terminal launch the slamtoolbox with config file ``mapper_params_online_async.yaml`` by running the command:
 
 ```
@@ -144,7 +147,6 @@ Open Rviz and click on ``Add`` under the Display window on the left, and add a m
 
 **Change RViz View**
 Change the Rviz view of the map to top-down-ortho by clicking on the righthand side scrollbar which will open up the Views menu. Under ``Type`` choose the ``TopDownOrtho`` from the dropdown list.
-
 
 
 **References:**
