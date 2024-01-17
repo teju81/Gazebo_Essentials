@@ -58,17 +58,30 @@ def generate_launch_description():
             }.items()
         )
 
+    # spawn_entity = Node(
+    #             name='urdf_spawner',
+    #             package='gazebo_ros', 
+    #             executable='spawn_entity.py',
+    #             arguments=['-topic', 'robot_description',
+    #                        '-entity', 'volta_robot',
+    #                         '-x', '-7',
+    #                        '-y', '-3',
+    #                        '-Y', '1.5708',
+    #                        '-package_to_model',
+    #                        '-b'],
+    #             output='screen'
+    #         )       
     spawn_entity = Node(
                 name='urdf_spawner',
                 package='gazebo_ros', 
                 executable='spawn_entity.py',
                 arguments=['-topic', 'robot_description',
                            '-entity', 'volta_robot',
-                            '-x', '-7',
-                           '-y', '-3',
+                            '-x', '0',
+                           '-y', '0',
                            '-Y', '1.5708',
                            '-package_to_model',
                            '-b'],
                 output='screen'
-            )         
+            )
     return LaunchDescription([gazebo, spawn_entity, start_robot_state_publisher_cmd, teleop])

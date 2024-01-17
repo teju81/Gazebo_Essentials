@@ -50,13 +50,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
     <xacro:macro name="volta_robot">
         <!-- Footprint -->
-        <link name="footprint"/>
+        <link name="base_footprint"/>
 
         <!-- Joint from footprint to base link(chassis) -->
         <joint name="base_footprint_joint" type="fixed">
             <origin xyz="0 0 ${base_underside_h}" rpy="0 0 0" />
             <parent link="base_link" />
-            <child link="footprint" />
+            <child link="base_footprint" />
         </joint>
 
         <!-- Chassis a.k.a base_link -->
