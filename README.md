@@ -108,6 +108,12 @@ A typival Xacro file will be defined as below, where xacro properties are define
 
 # Teleoperating the Volta in Gazebo Environment
 
+## Frames of Reference
+
+There are 4 key frames of reference that are important for us to understand. The ``base_link``, ``base_foot_print``, ``odom`` and ``map`` frames. The ``base_link`` and ``base_foot_print`` frames are associated with the physical robot. Typically the ``base_link`` frame will correspond to the centre of the robot body. So, for example, for a humanoid robot ``base_link`` is taken to be the centre of the hip and for an AMR the ``base_link`` is taken to be the centre of the chassis. The ``base_foot_print`` is the projection of the ``base_link`` vector onto the ground plane. The ``odom`` frame is associated with the starting point of the robot (origin for the odometry system) and ``map`` frame is the world origin.
+
+## Running SLAM using Gazebo Simulations
+
 **Create Workspace and Launch Gazebo**
 
 Create a ros2 workspace for the simulation by running the following commands
@@ -180,7 +186,9 @@ In the abscence of a localization algorithm the robot will appear as a white blo
 We need to activate the amcl node by running the command ``ros2 run nav2_util lifecycle_bringup amcl``. Once activated the AMCL needs an initial estimate of the pose of the robot to get started. The amcl node subscribes to the /initialpose topic and waits to receive an initial pose estimate on this topic. The initial pose estimate can also be set by using RViz. Click on ``2D Pose Estimate`` and click on the map and drag the arrow in the direction in which you estimate the robot to be facing.
 
 
-**Note:** To avoid running the nodes individually on seperate terminals, we can use the launch file for amcl.
+**Note:** 
+
+- To avoid running the nodes individually on seperate terminals, we can use the launch file for amcl.
 
 **References:**
 
@@ -189,3 +197,5 @@ We need to activate the amcl node by running the command ``ros2 run nav2_util li
 3) Articulated Robotics URDF/Xacro Tutorial: https://articulatedrobotics.xyz/ready-for-ros-7-urdf/
 4) SLAM Toolbox: https://www.youtube.com/watch?v=ZaiA3hWaRzE&t=520s&ab_channel=ArticulatedRobotics
 5) Nav2 Package: https://www.youtube.com/watch?v=jkoGkAd0GYk&t=573s&ab_channel=ArticulatedRobotics
+6) (SLAM) Navigating While Mapping by Steve Mecenski - https://navigation.ros.org/tutorials/docs/navigation2_with_slam.html
+7) 
