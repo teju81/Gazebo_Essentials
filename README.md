@@ -110,7 +110,7 @@ A typival Xacro file will be defined as below, where xacro properties are define
 
 ## Frames of Reference
 
-There are 4 key frames of reference that are important for us to understand. The ``base_link``, ``base_foot_print``, ``odom`` and ``map`` frames. The ``base_link`` and ``base_foot_print`` frames are associated with the physical robot. Typically the ``base_link`` frame will correspond to the centre of the robot body. So, for example, for a humanoid robot ``base_link`` is taken to be the centre of the hip and for an AMR the ``base_link`` is taken to be the centre of the chassis. The ``base_foot_print`` is the projection of the ``base_link`` vector onto the ground plane. The ``odom`` frame is associated with the starting point of the robot (origin for the odometry system) and ``map`` frame is the world origin.
+There are 4 key frames of reference that are important for us to understand. The ``base_link``, ``base_foot_print``, ``odom`` and ``map`` frames. The ``base_link`` and ``base_foot_print`` frames are associated with the physical robot. Typically the ``base_link`` frame will correspond to the centre of the robot body. So, for example, for a humanoid robot ``base_link`` is taken to be the centre of the hip and for an AMR the ``base_link`` is taken to be the centre of the chassis. The ``base_footprint`` link is a virtual (non-physical) link which has no dimensions or collision areas. It is the projection of the ``base_link`` vector onto the ground plane. Its primary purpose is to enable various packages determine the center of a robot projected to the ground.  The ``odom`` frame is associated with the starting point of the robot (origin for the odometry system) and ``map`` frame is the world origin.
 
 ## Running SLAM using Gazebo Simulations
 
@@ -194,8 +194,9 @@ We need to activate the amcl node by running the command ``ros2 run nav2_util li
 
 1) Neobotix website - https://neobotix-docs.de/ros/platform/index.html
 2) Neobotix github page - https://github.com/neobotix
-3) Articulated Robotics URDF/Xacro Tutorial: https://articulatedrobotics.xyz/ready-for-ros-7-urdf/
-4) SLAM Toolbox: https://www.youtube.com/watch?v=ZaiA3hWaRzE&t=520s&ab_channel=ArticulatedRobotics
-5) Nav2 Package: https://www.youtube.com/watch?v=jkoGkAd0GYk&t=573s&ab_channel=ArticulatedRobotics
-6) (SLAM) Navigating While Mapping by Steve Mecenski - https://navigation.ros.org/tutorials/docs/navigation2_with_slam.html
-7) 
+3) Setup URDF with RVIZ - https://navigation.ros.org/setup_guides/urdf/setup_urdf.html
+4) Articulated Robotics URDF/Xacro Tutorial: https://articulatedrobotics.xyz/ready-for-ros-7-urdf/
+5) SLAM Toolbox: https://www.youtube.com/watch?v=ZaiA3hWaRzE&t=520s&ab_channel=ArticulatedRobotics
+6) Nav2 Package: https://www.youtube.com/watch?v=jkoGkAd0GYk&t=573s&ab_channel=ArticulatedRobotics
+7) (SLAM) Navigating While Mapping by Steve Mecenski - https://navigation.ros.org/tutorials/docs/navigation2_with_slam.html
+8) 
