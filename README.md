@@ -140,7 +140,7 @@ You should be able to see a Gazebo environment in which the volta is spawned and
 In a new terminal launch rviz with config file ``urdf.rviz`` by running the command:
 
 ```
-rviz2 -d src/volta_description/rviz_params/urdf.rviz
+rviz2 -d <path_to_rviz_config_file>
 ```
 
 **Launch Slamtoolbox with Config File**
@@ -148,7 +148,7 @@ rviz2 -d src/volta_description/rviz_params/urdf.rviz
 In a new terminal launch the slamtoolbox with config file ``mapper_params_online_async.yaml`` by running the command:
 
 ```
-ros2 launch slam_toolbox online_async_launch.py slam_params_file:=./config/mapper_params_online_async.yaml use_sim_time:=true
+ros2 launch slam_toolbox online_async_launch.py slam_params_file:=<path_to_mapper_params_yaml_file> use_sim_time:=true
 ```
 
 **Add a Map to RViz**
