@@ -168,7 +168,7 @@ In RViz click on ``Panel``--->``Add New Panel`` (in the menubar) and select the 
 We will use the AMCL package to do this. 
 
 **Install the AMCL package**
-Run ``sudo apt install ros-iron-nav2 ros-iron-nav2-bringup`` to install the required packages.
+Run ``sudo apt install ros-iron-navigation2 ros-iron-nav2-bringup`` to install the required packages.
 
 **Run Map Server**
 Run the command ``ros2 run nav2_map_server map_server --ros-args -p yaml_file_name:=<your_map_yaml_file_path> -p use_sim_time:=true``
