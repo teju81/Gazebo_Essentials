@@ -106,6 +106,24 @@ A typival Xacro file will be defined as below, where xacro properties are define
 - xml documents (.world files) that specifies the world layout and populates it with other objects.
 
 
+# ROS2 Control
+
+- ROS2 control serves as an interface between controller algorithms and hardware drivers
+  - Hardware drivers interface with the sensors and actuators on the robot
+    - Motors can have various types of control such as position, velocity, torque etc.
+    - Motors and sensors can have various communication interfaces such as single vs multiple and protocols such as serial vs canbus vs ethercat etc.
+  - Controller algorithms can be various kinds
+  - Many types of drivers and controller algorithms already exist and should be incorporated in your software before writing your own controller algorithms and drivers 
+- Hardware Interfaces provides
+  -   command interface (things you can control on the robot usually actuators - READ/WRITE)
+  -   state interface (things you can only monitor usually sensors usually limited, but not necessarily, to actuator sensors - READ ONLY)
+  -   The URDF of the robot mentions these interfaces under the ``<ros2_control>`` tags with each joint of the robot having these interfaces
+    - each joint will have tags ``<command_interface>`` and ``<state_interface>`` tags
+    - Each control interface might in addition have parameters (for eg. differential drive robots will have min and max velocities, robot arms have joint limits etc.)  
+  -   terminal command ``ros2 control list_hardware_interfaces``
+- Controller needs to be fast (no delay between controller and hardware drivers)
+
+
 # Teleoperating the Volta in Gazebo Environment
 
 ## Frames of Reference
