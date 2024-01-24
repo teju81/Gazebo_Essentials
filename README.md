@@ -99,6 +99,7 @@ A typival Xacro file will be defined as below, where xacro properties are define
   - Reference [3] is a very nicely written reference to understand URDF and xacro files for describing your robot.
   - Volta Description package in botsync github page is a good reference design
   - Material in visual for sphere/cylinder/box will only show in RVIZ but not in Gazebo. Need to set this explicitly for gazebo. Not needed if visual is a mesh.
+  - Keep your sensor, control and main robot xacro files separate for better readability
 
 
 
@@ -120,8 +121,40 @@ A typival Xacro file will be defined as below, where xacro properties are define
   -   The URDF of the robot mentions these interfaces under the ``<ros2_control>`` tags with each joint of the robot having these interfaces
     - each joint will have tags ``<command_interface>`` and ``<state_interface>`` tags
     - Each control interface might in addition have parameters (for eg. differential drive robots will have min and max velocities, robot arms have joint limits etc.)  
-  -   terminal command ``ros2 control list_hardware_interfaces``
-- Controller needs to be fast (no delay between controller and hardware drivers)
+  -   terminal command to list all the hardware interfaces ``ros2 control list_hardware_interfaces``
+- Information about the controller algorithms is passed on via yaml files (on ROS topics?? check this.)
+- Controller manager needs to be fast (no delay between controller and hardware drivers)
+  - Information about the 
+  - Two options for controller manager
+    - One can write own node via controller_manager::ControllerManager class (like gazebo_ros2_control)
+    - Use standard one provided by ROS2 controller_manager/ros2_control_node
+- One can interact with the controller manager in multiple ways
+  - ros2 services
+  - ros2 control CLI
+  - Specialized nodes/scripts that handle certain key functionalities
+
+## Implementing ROS2 Control in Gazebo
+
+Refer to the video https://youtu.be/4QKsDf1c4hc?si=pY0-_cx4RdAH9sWI&t=498
+
+- Install by running ``sudo apt install ros-<ros_distro>-ros2-control ros-<ros_distro>-ros2-controllers ros-<ros_distro>-gazebo-ros2-control
+- Need to specify three things in the URDF/Xacro file
+  - within the ``<ros2_control>`` tags we need to specify the tlugin to tell Gazebo to use ROS2 control i.e gazebo_ros2_control/GazeboSystem
+  - Within the ``<gazebo>`` tags replace the default plugin ``libgazebo_ros_diff_drive.so`` with ``libgazebo_ros2_control.so``
+  - Need to pass on the controller_yaml file to the plugin implementing the controller manager
+    - Gazebo uses its own controller manager (when running on real robot hardware we need to run ``ros2 run controller_manager ros2_control_node``)
+    - The controller_manager will be able to get the URDF file via robot_state_publisher
+- Next we need to implement the controller_yaml file that specifies the types of controllers and their associated parameters
+- Next we need to start running the controllers specified in the controller_yaml file by running ``ros2 run controller_manager spawner.py <controller_name_in_yaml_file>``
+  - Sometimes the nodes spun up by the spawner will time out when gazebo is slow to load. One might want to add some delay in running the spawner to avoid time outs.
+
+
+Now check that the robot can be controlled in gazebo via teleop_twist_keyboard.
+
+**Note:** ROS2 differential drive controller will receive control commands on /<name_of_differential_drive_controller_in_yaml_file>/cmd_vel_unstamped and not /cmd_vel
+
+**Note:** Good idea to use twist_mux and teleop_joy nodes instead of teleoperating with keyboard. The requirement that the terminal window to be on top for achieving control is annoying.
+
 
 
 # Teleoperating the Volta in Gazebo Environment
